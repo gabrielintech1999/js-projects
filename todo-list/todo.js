@@ -1,18 +1,24 @@
-let todos = [];
 const containerTodos = document.getElementById("container-todos");
-const newTodo = document.getElementById("text-box");
+const textBox = document.getElementById("text-box");
 const addTodoBtn = document.getElementById("btn-addTodo");
+
+// state
+let todos = [];
+let newTodo;
+//let iscompleted = true
 
 function render() {
   containerTodos.innerHTML = "";
   let template = "";
   todos.forEach((todo, i) => {
     template += `
-           <li>
-              <input checked=${true} type="checkbox" name="" id="">
-              <span>${todo.text}</span>
+           <li data-key=${i} >
+              <input type="checkbox" id="checkbox" name="checkbox" onclick=markTodo(${i})  >
+              <span class=${todo.iscompleted ? "completed" : null} >${
+      todo.text
+    }</span>
               <button onclick="deleteTodo(${todo.id})" >Delete</button>
-              <button onclick="updateTodo(${todo})" >Update</button>
+              <button onclick="updateTodo(${i})" >Update</button>
           </li>
         `;
   });
@@ -20,21 +26,27 @@ function render() {
   containerTodos.innerHTML = template;
 }
 
+const markTodo = (idToMark) => {
 
-addTodoBtn.addEventListener("click", () => {
-    if (newTodo.value.trim()) {
-      todos.push({
-        id: Date.now(),
-        text: newTodo.value,
-        iscompleted: true,
-      });
+    todos[idToMark].iscompleted = !todos[idToMark].iscompleted 
+
+    render()
   
-      newTodo.value = "";
-    }
-    render();
-  })
+};
 
+function addTodo() {
+  newTodo = textBox.value.trim();
+  if (newTodo) {
+    todos.push({
+      id: Date.now(),
+      text: newTodo,
+      iscompleted: false,
+    });
 
+    textBox.value = "";
+  }
+  render();
+}
 
 function deleteTodo(idTodelete) {
   console.log(idTodelete);
@@ -44,8 +56,8 @@ function deleteTodo(idTodelete) {
   render();
 }
 
-function updateTodo(todoToUpdate) {
+function updateTodo(indexToUpdate) {
   console.log("OK");
 
-  console.log(todoToUpdate);
+  console.log(todos[indexToUpdate]);
 }
