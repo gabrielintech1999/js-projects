@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+
+    <style>
+      .selected {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" id="text-box" />
+      <button onclick="addTodo()">Add</button>
+
+      <ul id="container-todos">
+        <!-- Todos generated dynamicaly by js -->
+      </ul>
+    </div>
+
+    <script>
+      let todos = [];
+      const containerTodos = document.getElementById("container-todos");
+      const newTodo = document.getElementById("text-box");
+
+      function render() {
+        containerTodos.innerHTML = "";
+        let template = "";
+        todos.forEach((todo, i) => {
+          template += `
+                 <li>
+                    <input checked=${true} type="checkbox" name="" id="">
+                    <span>${todo.text}</span>
+                    <button onclick="deleteTodo(${todo.id})" >Delete</button>
+                    <button onclick="updateTodo(${todo})" >Update</button>
+                </li>
+              `;
+        });
+
+        containerTodos.innerHTML = template;
+      }
+
+      function addTodo() {
+        if (newTodo.value.trim()) {
+          todos.push({
+            id: Date.now(),
+            text: newTodo.value,
+            iscompleted: true,
+          });
+
+          newTodo.value = "";
+        }
+        render();
+      }
+
+      function deleteTodo(idTodelete) {
+        console.log(idTodelete);
+
+        todos = todos.filter((todo, i) => todo.id !== idTodelete);
+
+        render();
+      }
+
+      function updateTodo(todoToUpdate) {
+        console.log("OK");
+
+        console.log(todoToUpdate);
+      }
+    </script>
+  </body>
+</html>
