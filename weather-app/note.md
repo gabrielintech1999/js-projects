@@ -1,0 +1,6 @@
+- Organizando as pastas [x]
+- estruturar o html js e css [x]
+- colocandos os eventos [x]
+- criandoa funcao getweather [x]
+- criando o render function [x]
+- Done
