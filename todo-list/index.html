@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo list</title>
+
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Todo list</h1>
+    <div>
+      <input type="text" name="textbox"   id="text-box"  />
+      <button onclick="addTodo()" >Add</button>
+    </div>
+
+      <ul id="todo-list">
+        <!-- Dinamycally through js -->
+        <!-- <li>
+          <input type="checkbox"  onclick="markTodo()" />
+          <span class="completed"  >Todo 1</span>
+          <button onclick="deleteTodo()" >Delete</button>
+          <button onclick="editTodo()" >Edit</button>
+        </li> -->
+      </ul>
+      
+      <div id="edit-mode" style="display: none;">
+        <input type="text" name="" id="" />
+      <button onclick="updateTodo()" >update</button> 
+      </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
